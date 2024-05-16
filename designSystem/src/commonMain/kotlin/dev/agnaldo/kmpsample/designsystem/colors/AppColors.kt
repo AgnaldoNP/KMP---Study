@@ -283,6 +283,54 @@ class AppColors(
 
     internal fun updateColorsFrom(other: AppColors) {
         primary = other.primary
+        primaryLight = other.primaryLight
+        primaryDark = other.primaryDark
+        onPrimary = other.onPrimary
+
+        secondary = other.secondary
+        secondaryLight = other.secondaryLight
+        secondaryDark = other.secondaryDark
+        onSecondary = other.onSecondary
+
+        tertiary = other.tertiary
+        tertiaryLight = other.tertiaryLight
+        tertiaryDark = other.tertiaryDark
+        onTertiary = other.onTertiary
+
+        contrast = other.contrast
+        contrastLight = other.contrastLight
+        contrastDark = other.contrastDark
+        onContrast = other.onContrast
+
+        background = other.background
+        backgroundLight = other.backgroundLight
+        backgroundDark = other.backgroundDark
+        onBackground = other.onBackground
+
+        surface = other.surface
+        surfaceLight = other.surfaceLight
+        surfaceDark = other.surfaceDark
+        onSurface = other.onSurface
+
+        error = other.error
+        errorLight = other.errorLight
+        errorDark = other.errorDark
+        onError = other.onError
+
+        success = other.success
+        successLight = other.successLight
+        successDark = other.successDark
+        onSuccess = other.onSuccess
+
+        symbol = other.symbol
+        text = other.text
+
+        baseMinimum = other.baseMinimum
+        baseThin = other.baseThin
+        baseWeak = other.baseWeak
+        baseMiddle = other.baseMiddle
+        baseStrong = other.baseStrong
+        baseMaximum = other.baseMaximum
     }
 
     companion object {
