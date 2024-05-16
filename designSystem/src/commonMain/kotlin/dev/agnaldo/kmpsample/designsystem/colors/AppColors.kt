@@ -282,6 +282,7 @@ class AppColors(
     )
 
     internal fun updateColorsFrom(other: AppColors) {
+        isLight = other.isLight
         primary = other.primary
         primaryLight = other.primaryLight
         primaryDark = other.primaryDark

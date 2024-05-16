@@ -3,11 +3,13 @@ package dev.agnaldo.kmpsample.designsystem.theme
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Shapes
 import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
 import dev.agnaldo.kmpsample.designsystem.colors.AppColors
+import dev.agnaldo.kmpsample.designsystem.shapes.AppShapes
 import dev.agnaldo.kmpsample.designsystem.typography.AppTypography
 
 @Suppress("ktlint:standard:function-naming")
@@ -15,10 +17,12 @@ import dev.agnaldo.kmpsample.designsystem.typography.AppTypography
 fun ApplicationTheme(
     colors: AppColors = AppColors.getColorsTheme(isSystemInDarkTheme()),
     typography: AppTypography = AppTypography.default,
+    shapes: AppShapes = AppShapes.default,
     content: @Composable () -> Unit
 ) {
     AppTheme.colors.updateColorsFrom(colors)
     AppTheme.typography.updateTypographyFrom(typography)
+    AppTheme.shapes.updateShapesFrom(shapes)
 
     MaterialTheme(
         colors = Colors(
@@ -51,6 +55,11 @@ fun ApplicationTheme(
             button = AppTheme.typography.button,
             caption = AppTheme.typography.caption,
             overline = AppTheme.typography.overline
+        ),
+        shapes = Shapes(
+            small = AppTheme.shapes.small,
+            medium = AppTheme.shapes.medium,
+            large = AppTheme.shapes.large
         )
     ) {
         content()
@@ -60,6 +69,7 @@ fun ApplicationTheme(
 object AppTheme {
     private val currentColors = staticCompositionLocalOf { AppColors.lightColors.copy() }
     private val currentTypography = staticCompositionLocalOf { AppTypography.default.copy() }
+    private val currentShapes = staticCompositionLocalOf { AppShapes.default.copy() }
 
     val colors: AppColors
         @Composable
@@ -70,4 +80,9 @@ object AppTheme {
         @Composable
         @ReadOnlyComposable
         get() = currentTypography.current
+
+    val shapes: AppShapes
+        @Composable
+        @ReadOnlyComposable
+        get() = currentShapes.current
 }

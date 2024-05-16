@@ -184,7 +184,7 @@ class AppTypography(
     }
 
     companion object {
-        val default = AppTypography(
+        internal val default = AppTypography(
             fontFamily = FontFamily.Default,
             h1 = DefaultTextStyle.copy(
                 fontWeight = FontWeight.Light,
