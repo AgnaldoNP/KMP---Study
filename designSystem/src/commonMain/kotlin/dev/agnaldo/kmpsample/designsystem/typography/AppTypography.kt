@@ -258,8 +258,8 @@ class AppTypography(
             ),
             button = DefaultTextStyle.copy(
                 fontWeight = FontWeight.Medium,
-                fontSize = 14.sp,
-                lineHeight = 16.sp,
+                fontSize = 16.sp,
+                lineHeight = 18.sp,
                 letterSpacing = 1.25.sp,
                 fontFamily = FontFamily.Default
             ),

@@ -51,9 +51,9 @@ class AppShapes(
 
     companion object {
         internal val default = AppShapes(
-            small = RoundedCornerShape(1.dp),
-            medium = RoundedCornerShape(2.dp),
-            large = RoundedCornerShape(0.dp),
+            small = RoundedCornerShape(4.dp),
+            medium = RoundedCornerShape(6.dp),
+            large = RoundedCornerShape(8.dp),
         )
     }
 }

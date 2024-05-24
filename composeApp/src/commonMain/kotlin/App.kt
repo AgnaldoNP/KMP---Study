@@ -1,18 +1,24 @@
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import dev.agnaldo.kmpsample.designsystem.theme.ApplicationTheme
-import dev.agnaldo.kmpsample.designsystem.theme.AppTheme
-import dev.agnaldo.kmpsample.designsystem.colors.AppColors
+import dev.agnaldo.kmpsample.designsystem.widgets.ButtonContrast
+import dev.agnaldo.kmpsample.designsystem.widgets.ButtonError
+import dev.agnaldo.kmpsample.designsystem.widgets.ButtonGhost
+import dev.agnaldo.kmpsample.designsystem.widgets.ButtonPrimary
+import dev.agnaldo.kmpsample.designsystem.widgets.ButtonSecondary
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -20,103 +26,43 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Composable
 @Preview
 fun App() {
-    var isDarkTheme by remember { mutableStateOf(false) }
-    ApplicationTheme(
-        colors = AppColors.getColorsTheme(isDarkTheme)
-    ) {
-        Box(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth()
-                .fillMaxHeight()
-        ) {
+    var buttonEnabled by remember { mutableStateOf(true) }
+    ApplicationTheme {
+        Box(modifier = Modifier.fillMaxWidth().fillMaxHeight()) {
             Column(
-                modifier = Modifier
-                    .background(AppTheme.colors.primary)
-                    .fillMaxWidth()
-                    .fillMaxHeight(),
-                horizontalAlignment = Alignment.CenterHorizontally
+                modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(12.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Button(
-                    modifier = Modifier.padding(0.dp),
-                    shape = RoundedCornerShape(8.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        backgroundColor = Color.Yellow
-                    ),
-                    onClick = {
-                        isDarkTheme = !isDarkTheme
-                    }
-
-                ) {
-                    Text("Click me!")
-                    // onclick
-                    KeyboardActions {
-                        // show alert
-                    }
-                }
+                ButtonPrimary(
+                    text = "Click me 1!",
+                    modifier = Modifier.fillMaxWidth(),
+                    enabled = buttonEnabled,
+                    onClick = { buttonEnabled = !buttonEnabled }
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                ButtonSecondary(
+                    text = "Click me 2!",
+                    modifier = Modifier.fillMaxWidth(),
+                )
+                ButtonContrast(
+                    text = "Click me 3!",
+                    modifier = Modifier.fillMaxWidth(),
+                )
+                ButtonGhost(
+                    text = "Click me 4!",
+                    modifier = Modifier.fillMaxWidth(),
+                )
+                ButtonGhost(
+                    text = "Click me 5!",
+                    enabled = false,
+                    modifier = Modifier.fillMaxWidth(),
+                )
+                ButtonError(
+                    text = "Click me 6!",
+                    modifier = Modifier.fillMaxWidth(),
+                )
             }
         }
     }
 }
-
-//        if (updateColors) {
-//            MaterialTheme {
-//                AppTheme.colors.updateColorsFrom(DarkColors)
-//            }
-//        }
-//        Box(
-//            modifier = Modifier
-//                .padding(16.dp)
-//                .fillMaxWidth()
-//                .fillMaxHeight()
-//        ) {
-//            Column(
-//                modifier = Modifier
-//                    .background(MaterialTheme.colors.error)
-//                    .background(AppTheme.colors.primaryAbc)
-//                    .fillMaxWidth()
-//                    .fillMaxHeight(),
-//                horizontalAlignment = Alignment.CenterHorizontally
-//            ) {
-//                Button(
-//                    modifier = Modifier.padding(0.dp),
-//                    shape = RoundedCornerShape(8.dp),
-//                    colors = ButtonDefaults.buttonColors(
-//                        backgroundColor = Color.Yellow
-//                    ),
-//                    onClick = {
-//                        showSnackbar = true
-//                        showContent = !showContent
-//                        updateColors = !updateColors
-//                    }
-//
-//                ) {
-//                    Text("Click me!")
-//                    // onclick
-//                    KeyboardActions {
-//                        // show alert
-//                    }
-//                }
-//
-//                AnimatedVisibility(showContent) {
-//                    val greeting = remember { Greeting().greet() }
-//                    Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-//                        Image(painterResource(Res.drawable.compose_multiplatform), null)
-//                        Text("Compose: $greeting")
-//                    }
-//                }
-//            }
-//
-//            if (showSnackbar) {
-//                Snackbar(
-//                    action = {
-//                        Button(onClick = { showSnackbar = false }) {
-//                            Text("Dismiss")
-//                        }
-//                    },
-//                    modifier = Modifier.padding(8.dp).align(Alignment.BottomCenter)
-//                ) {
-//                    Text(text = "This is a message")
-//                }
-//            }
-//        }
