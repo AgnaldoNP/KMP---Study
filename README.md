@@ -1,3 +1,9 @@
+
+## KMP Study Case
+### This Project has the sole purpose of serving as a code base for study, without being focused on what is a good practice. It is my first contact with Kotlin Multi Platform
+
+---
+
 This is a Kotlin Multiplatform project targeting Android, iOS, Web, Desktop, Server.
 
 * `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
