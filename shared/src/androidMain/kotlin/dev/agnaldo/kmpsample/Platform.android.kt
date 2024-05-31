@@ -1,3 +1,5 @@
+package dev.agnaldo.kmpsample
+
 import android.os.Build
 
 class AndroidPlatform : Platform {

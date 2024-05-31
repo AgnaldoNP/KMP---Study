@@ -1,3 +1,5 @@
+package dev.agnaldo.kmpsample.ui.mobile
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,13 +21,12 @@ import dev.agnaldo.kmpsample.designsystem.widgets.ButtonError
 import dev.agnaldo.kmpsample.designsystem.widgets.ButtonGhost
 import dev.agnaldo.kmpsample.designsystem.widgets.ButtonPrimary
 import dev.agnaldo.kmpsample.designsystem.widgets.ButtonSecondary
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
-@OptIn(ExperimentalResourceApi::class)
+@Suppress("ktlint:standard:function-naming")
 @Composable
 @Preview
-fun App() {
+fun MobileApp() {
     var buttonEnabled by remember { mutableStateOf(true) }
     ApplicationTheme {
         Box(modifier = Modifier.fillMaxWidth().fillMaxHeight()) {

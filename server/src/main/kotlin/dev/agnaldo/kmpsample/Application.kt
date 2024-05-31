@@ -1,7 +1,7 @@
+@file:Suppress("ktlint:standard:no-wildcard-imports")
+
 package dev.agnaldo.kmpsample
 
-import Greeting
-import SERVER_PORT
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*

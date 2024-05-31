@@ -1,3 +1,5 @@
+package dev.agnaldo.kmpsample
+
 class Greeting {
     private val platform = getPlatform()
 

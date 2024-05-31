@@ -1,3 +1,4 @@
+import org.apache.tools.ant.util.JavaEnvUtils.VERSION_11
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
@@ -49,6 +50,7 @@ kotlin {
 
     sourceSets {
         val desktopMain by getting
+        val wasmJsMain by getting
 
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling.preview)
@@ -63,10 +65,14 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(projects.designSystem)
             implementation(projects.shared)
+            implementation(libs.kotlinx.datetime)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
         }
+//        wasmJsMain.dependencies {
+//            implementation(libs.kotlin.stdlib.js)
+//        }
     }
 }
 
