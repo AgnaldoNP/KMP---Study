@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
 import dev.agnaldo.kmpsample.designsystem.colors.AppColors
+import dev.agnaldo.kmpsample.designsystem.colors.FlavorColors
 import dev.agnaldo.kmpsample.designsystem.shapes.AppShapes
 import dev.agnaldo.kmpsample.designsystem.typography.AppTypography
 
@@ -67,7 +68,7 @@ fun ApplicationTheme(
 }
 
 object AppTheme {
-    private val currentColors = staticCompositionLocalOf { AppColors.lightColors.copy() }
+    private val currentColors = staticCompositionLocalOf { FlavorColors.lightColors.copy() }
     private val currentTypography = staticCompositionLocalOf { AppTypography.default.copy() }
     private val currentShapes = staticCompositionLocalOf { AppShapes.default.copy() }
 

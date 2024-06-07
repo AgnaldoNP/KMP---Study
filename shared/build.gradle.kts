@@ -1,3 +1,4 @@
+import org.gradle.configurationcache.extensions.capitalized
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
@@ -33,14 +34,35 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
-    jvm()
+    jvm("desktop")
 
     sourceSets {
-        commonMain.dependencies {
-            // put your Multiplatform dependencies here
+        val desktopMain by getting
+        val wasmJsMain by getting
+
+        val variant = BuildSrcConfig.Variant.getVariant(project = project, gradle = gradle)
+        commonMain {
+            dependencies { /* put your Multiplatform dependencies here */ }
+            kotlin.srcDir("src/common${variant.flavor.flavorName.capitalized()}/kotlin")
+            kotlin.srcDir("src/common${variant.variantName.capitalized()}/kotlin")
         }
 
-        jsMain.dependencies {
+        wasmJsMain.apply {
+            dependencies { /* put your Multiplatform dependencies here */ }
+            kotlin.srcDir("src/wasmJsMain${variant.flavor.flavorName.capitalized()}/kotlin")
+            kotlin.srcDir("src/wasmJsMain${variant.variantName.capitalized()}/kotlin")
+        }
+
+        iosMain {
+            dependencies { /* put your Multiplatform dependencies here */ }
+            kotlin.srcDir("src/ios${variant.flavor.flavorName.capitalized()}/kotlin")
+            kotlin.srcDir("src/ios${variant.variantName.capitalized()}/kotlin")
+        }
+
+        desktopMain.apply {
+            dependencies { /* put your Multiplatform dependencies here */ }
+            kotlin.srcDir("src/desktop${variant.flavor.flavorName.capitalized()}/kotlin")
+            kotlin.srcDir("src/desktop${variant.variantName.capitalized()}/kotlin")
         }
     }
 }
@@ -54,5 +76,20 @@ android {
     }
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
+    }
+    buildTypes {
+        BuildSrcConfig.SrcBuildType.values().forEach { buildType ->
+            (findByName(buildType.buildTypeName) ?: create(buildType.buildTypeName)).apply {
+                isMinifyEnabled = buildType.isMinifyEnabled
+            }
+        }
+    }
+    flavorDimensions += BuildSrcConfig.Dimension.CLIENT
+    productFlavors {
+        BuildSrcConfig.Flavor.values().forEach { flavor ->
+            create("android" + flavor.flavorName.capitalized()) {
+                dimension = BuildSrcConfig.Dimension.CLIENT
+            }
+        }
     }
 }

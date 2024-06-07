@@ -5,8 +5,4 @@ object Strings {
         pt = "Olá, %s",
         en = "Hello, %s"
     )
-    val click1 = LocalizedString(
-        pt = "Clique aqui 1",
-        en = "Click me 1"
-    )
 }

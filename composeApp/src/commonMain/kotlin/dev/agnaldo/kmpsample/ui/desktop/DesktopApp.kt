@@ -25,6 +25,8 @@ import dev.agnaldo.kmpsample.designsystem.widgets.ButtonError
 import dev.agnaldo.kmpsample.designsystem.widgets.ButtonGhost
 import dev.agnaldo.kmpsample.designsystem.widgets.ButtonPrimary
 import dev.agnaldo.kmpsample.designsystem.widgets.ButtonSecondary
+import dev.agnaldo.kmpsample.providers.VariantStrings
+import dev.agnaldo.kmpsample.providers.FlavorStrings
 import dev.agnaldo.kmpsample.providers.Strings
 import dev.agnaldo.kmpsample.providers.getLanguage
 import kotlinx.coroutines.launch
@@ -49,7 +51,7 @@ fun DesktopApp() {
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     ButtonPrimary(
-                        text = Strings.click1.localize("Agnaldo"),
+                        text = FlavorStrings.click1.localize(),
                         modifier = Modifier.fillMaxWidth(),
                         enabled = buttonEnabled,
                         onClick = { buttonEnabled = !buttonEnabled }
@@ -69,11 +71,11 @@ fun DesktopApp() {
                         }
                     )
                     ButtonContrast(
-                        text = "Click me 3!",
+                        text = Strings.hello.localize("Agnaldo"),
                         modifier = Modifier.fillMaxWidth(),
                     )
                     ButtonGhost(
-                        text = "Click me 4!",
+                        text = VariantStrings.variantStr.localize(),
                         modifier = Modifier.fillMaxWidth(),
                     )
                     ButtonGhost(

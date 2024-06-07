@@ -11,6 +11,16 @@ application {
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=${extra["development"] ?: "false"}")
 }
 
+sourceSets {
+    val variant = BuildSrcConfig.Variant.getVariant(project = project, gradle = gradle)
+    main {
+        resources.srcDir("src/${variant.flavor.flavorName}/resources")
+        resources.srcDir("src/${variant.variantName}/resources")
+        kotlin.srcDir("src/${variant.flavor.flavorName}/kotlin")
+        kotlin.srcDir("src/${variant.variantName}/kotlin")
+    }
+}
+
 dependencies {
     implementation(projects.shared)
     implementation(libs.logback)
