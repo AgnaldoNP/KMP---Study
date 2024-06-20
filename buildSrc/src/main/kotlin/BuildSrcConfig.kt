@@ -46,7 +46,7 @@ object BuildSrcConfig {
                 val taskNames = gradle.startParameter.taskRequests
                     .flatMap { tr -> tr.args.map { it.toString() } }
 
-                val composeAndroidTaskStr = ":composeApp:assemble"
+                val composeAndroidTaskStr = ":composeApp:assembleAndroid"
                 val task = taskNames.firstOrNull { it.contains(composeAndroidTaskStr) }
                 if (task != null) {
                     val buildType = buildTypes.firstOrNull { task.contains(other = it, ignoreCase = true) }

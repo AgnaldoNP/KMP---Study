@@ -6,10 +6,10 @@ internal object FlavorColors {
 
     internal val lightColors = AppColors(
         isLight = true,
-        primary = Color(0xFFFFFFFF),
-        primaryLight = Color(0xFF1A45A3),
-        primaryDark = Color(0xFF0F1561),
-        onPrimary = Color(0xFF000000),
+        primary = Color(0xFFEF5353),
+        primaryLight = Color(0xFFED7A7A),
+        primaryDark = Color(0xFFF43D3D),
+        onPrimary = Color(0xFFFFFFFF),
 
         secondary = Color(0xFFF7DC16),
         secondaryLight = Color(0xFFFFF569),

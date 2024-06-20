@@ -3,7 +3,9 @@
 package dev.agnaldo.kmpsample.designsystem.widgets
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.defaultMinSize
@@ -19,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 import dev.agnaldo.kmpsample.designsystem.theme.AppTheme
 
@@ -38,12 +41,17 @@ internal fun AppButton(
     border: BorderStroke? = null,
     elevation: ButtonElevation = ButtonDefaults.elevation(),
     contentPadding: PaddingValues = PaddingValues(all = 2.dp),
+    overrideDefaultModifiers: Boolean = false,
     content: @Composable RowScope.() -> Unit
 ) {
-    val currentModifier = if (modifier != null) {
-        defaultModifiers.then(modifier)
+    val currentModifier = if (!overrideDefaultModifiers) {
+        if (modifier != null) {
+            defaultModifiers.then(modifier)
+        } else {
+            defaultModifiers
+        }
     } else {
-        defaultModifiers
+        modifier ?: Modifier
     }
 
     return Button(
@@ -59,13 +67,13 @@ internal fun AppButton(
         if (text != null) {
             Text(
                 text = text,
+                color = colors.contentColor(enabled).value,
                 style = AppTheme.typography.button,
                 modifier = Modifier.padding(all = 10.dp)
             )
         }
         content()
     }
-
 }
 
 @Composable
@@ -203,5 +211,34 @@ fun ButtonGhost(
         colors = colors
     ) {
         content()
+    }
+}
+
+@Composable
+fun ImageButton(
+    image: Painter,
+    contentDescription: String = "",
+    onClick: () -> Unit
+) {
+    AppButton(
+        onClick = onClick,
+        colors = buttonColors(
+            backgroundColor = AppTheme.colors.surface,
+            contentColor = AppTheme.colors.onSurface,
+            disabledBackgroundColor = AppTheme.colors.baseWeak,
+            disabledContentColor = AppTheme.colors.baseMinimum
+        ),
+        contentPadding = PaddingValues(10.dp),
+        overrideDefaultModifiers = true,
+        modifier = Modifier.defaultMinSize(
+            minWidth = 1.dp,
+            minHeight = 1.dp
+        ),
+        shape = AppTheme.shapes.medium,
+    ) {
+        Image(
+            painter = image,
+            contentDescription = contentDescription,
+        )
     }
 }

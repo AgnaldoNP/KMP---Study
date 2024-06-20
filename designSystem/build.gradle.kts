@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.compose.compiler)
 }
 
 kotlin {
@@ -98,7 +99,7 @@ android {
     flavorDimensions += BuildSrcConfig.Dimension.CLIENT
     productFlavors {
         BuildSrcConfig.Flavor.values().forEach { flavor ->
-            create("andriod" + flavor.flavorName.capitalized()) {
+            create("android" + flavor.flavorName.capitalized()) {
                 dimension = BuildSrcConfig.Dimension.CLIENT
             }
         }

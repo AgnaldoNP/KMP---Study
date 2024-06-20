@@ -3,8 +3,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
-import dev.agnaldo.kmpsample.ui.desktop.DesktopApp
-import dev.agnaldo.kmpsample.ui.mobile.MobileApp
+import dev.agnaldo.kmpsample.mobile.MobileApp
 
 fun main() = application {
     Window(
@@ -14,7 +13,7 @@ fun main() = application {
         ),
         title = "KotlinProject",
     ) {
-        DesktopApp()
-//        MobileApp()
+//        DesktopApp()
+        MobileApp()
     }
 }

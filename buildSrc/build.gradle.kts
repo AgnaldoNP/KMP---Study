@@ -4,4 +4,10 @@ plugins {
 
 repositories {
     mavenCentral()
+    gradlePluginPortal()
+}
+
+dependencies {
+    compileOnly(gradleApi())
+    implementation(kotlin("stdlib"))
 }

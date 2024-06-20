@@ -1,5 +1,7 @@
 package dev.agnaldo.kmpsample.designsystem.typography
 
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -9,6 +11,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.sp
+import dev.agnaldo.kmpsample.designsystem.colors.FlavorColors
+import dev.agnaldo.kmpsample.designsystem.theme.AppTheme
 
 class AppTypography(
     fontFamily: FontFamily,
@@ -191,7 +195,7 @@ class AppTypography(
                 fontSize = 96.sp,
                 lineHeight = 112.sp,
                 letterSpacing = (-1.5).sp,
-                fontFamily = FontFamily.Default
+                fontFamily = FontFamily.Default,
             ),
             h2 = DefaultTextStyle.copy(
                 fontWeight = FontWeight.Light,
@@ -292,4 +296,5 @@ internal val DefaultLineHeightStyle = LineHeightStyle(
 
 internal val DefaultTextStyle = TextStyle.Default.copy(
     lineHeightStyle = DefaultLineHeightStyle,
+    color = FlavorColors.lightColors.baseMiddle
 )

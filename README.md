@@ -38,12 +38,12 @@ You can open the web application by running the `:composeApp:wasmJsBrowserDevelo
  > For every non Android  build the default variant is flavor1 debug (-Ptarget=flavor1 -Pvariant=debug), so you don't really need to add target and variant on the command parameters)
 
 ### Android
- - `./gradlew :composeApp:assembleFlavor1Debug`
- - `./gradlew :composeApp:assembleFlavor1Homolog`
- - `./gradlew :composeApp:assembleFlavor1Release`
- - `./gradlew :composeApp:assembleFlavor2Debug`
- - `./gradlew :composeApp:assembleFlavor2Homolog`
- - `./gradlew :composeApp:assembleFlavor2Release`
+ - `./gradlew :composeApp:assembleAndroidFlavor1Debug`
+ - `./gradlew :composeApp:assembleAndroidFlavor1Homolog`
+ - `./gradlew :composeApp:assembleAndroidFlavor1Release`
+ - `./gradlew :composeApp:assembleAndroidFlavor2Debug`
+ - `./gradlew :composeApp:assembleAndroidFlavor2Homolog`
+ - `./gradlew :composeApp:assembleAndroidFlavor2Release`
 ### Web
  - `./gradlew :composeApp:wasmJsBrowserDevelopmentRun`
  - `./gradlew :composeApp:wasmJsBrowserDevelopmentRun -Ptarget=flavor1 -Pvariant=debug`

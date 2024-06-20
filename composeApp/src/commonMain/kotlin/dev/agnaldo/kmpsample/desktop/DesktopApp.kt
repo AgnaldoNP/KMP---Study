@@ -1,4 +1,4 @@
-package dev.agnaldo.kmpsample.ui.desktop
+package dev.agnaldo.kmpsample.desktop
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
