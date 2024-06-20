@@ -1,10 +1,10 @@
 import SwiftUI
 
 @main
-struct flavor2App: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-    }
+struct iOSApp: App {
+	var body: some Scene {
+		WindowGroup {
+			ContentView()
+		}
+	}
 }

@@ -36,17 +36,17 @@ object BuildSrcConfig {
              * or from properties (desktopRun ... -Ptarget=flavor1)
              */
             fun getFlavor(
-                project: org.gradle.api.Project,
-                gradle: org.gradle.api.invocation.Gradle
+                project: org.gradle.api.Project?,
+                gradle: org.gradle.api.invocation.Gradle?
             ): Flavor {
-                val properties = project.properties
+                val properties = project?.properties.orEmpty()
                 val buildTypes = SrcBuildType.values().map { it.buildTypeName }
                 var target: String? = null
 
-                val taskNames = gradle.startParameter.taskRequests
-                    .flatMap { tr -> tr.args.map { it.toString() } }
+                val taskNames = gradle?.startParameter?.taskRequests
+                    ?.flatMap { tr -> tr.args.map { it.toString() } }.orEmpty()
 
-                val composeAndroidTaskStr = ":composeApp:assemble"
+                val composeAndroidTaskStr = ":composeApp:assembleAndroid"
                 val task = taskNames.firstOrNull { it.contains(composeAndroidTaskStr) }
                 if (task != null) {
                     val buildType = buildTypes.firstOrNull { task.contains(other = it, ignoreCase = true) }
@@ -111,15 +111,15 @@ object BuildSrcConfig {
              * or from properties (desktopRun ... -Pvariant=debug)
              */
             fun getBuildType(
-                project: org.gradle.api.Project,
-                gradle: org.gradle.api.invocation.Gradle
+                project: org.gradle.api.Project?,
+                gradle: org.gradle.api.invocation.Gradle?
             ): SrcBuildType {
-                val properties = project.properties
+                val properties = project?.properties.orEmpty()
                 val buildTypes = SrcBuildType.values().map { it.buildTypeName }
                 var buildType: String? = null
 
-                val taskNames = gradle.startParameter.taskRequests
-                    .flatMap { tr -> tr.args.map { it.toString() } }
+                val taskNames = gradle?.startParameter?.taskRequests
+                    ?.flatMap { tr -> tr.args.map { it.toString() } }.orEmpty()
 
                 val composeAndroidTaskStr = ":composeApp:assemble"
                 val task = taskNames.firstOrNull { it.contains(composeAndroidTaskStr) }
@@ -271,8 +271,8 @@ object BuildSrcConfig {
                 } ?: FLAVOR1_DEBUG
 
             fun getVariant(
-                project: org.gradle.api.Project,
-                gradle: org.gradle.api.invocation.Gradle
+                project: org.gradle.api.Project?,
+                gradle: org.gradle.api.invocation.Gradle?
             ): Variant {
                 val flavor = Flavor.getFlavor(project, gradle)
                 val buildType = SrcBuildType.getBuildType(project, gradle)

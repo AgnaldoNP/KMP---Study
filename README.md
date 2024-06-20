@@ -38,12 +38,12 @@ You can open the web application by running the `:composeApp:wasmJsBrowserDevelo
  > For every non Android  build the default variant is flavor1 debug (-Ptarget=flavor1 -Pvariant=debug), so you don't really need to add target and variant on the command parameters)
 
 ### Android
- - `./gradlew :composeApp:assembleFlavor1Debug`
- - `./gradlew :composeApp:assembleFlavor1Homolog`
- - `./gradlew :composeApp:assembleFlavor1Release`
- - `./gradlew :composeApp:assembleFlavor2Debug`
- - `./gradlew :composeApp:assembleFlavor2Homolog`
- - `./gradlew :composeApp:assembleFlavor2Release`
+ - `./gradlew :composeApp:assembleAndroidFlavor1Debug`
+ - `./gradlew :composeApp:assembleAndroidFlavor1Homolog`
+ - `./gradlew :composeApp:assembleAndroidFlavor1Release`
+ - `./gradlew :composeApp:assembleAndroidFlavor2Debug`
+ - `./gradlew :composeApp:assembleAndroidFlavor2Homolog`
+ - `./gradlew :composeApp:assembleAndroidFlavor2Release`
 ### Web
  - `./gradlew :composeApp:wasmJsBrowserDevelopmentRun`
  - `./gradlew :composeApp:wasmJsBrowserDevelopmentRun -Ptarget=flavor1 -Pvariant=debug`
@@ -73,6 +73,9 @@ You can open the web application by running the `:composeApp:wasmJsBrowserDevelo
 
 ---
 
+## Desings
+ - design based: https://www.figma.com/community/file/996734892252716627/1ux-3ui
+
 ## Localized Strings
  _`LocalizedString`_ is a data class that represents a single string in all languages supported
  ```kotlin
@@ -92,7 +95,7 @@ The _`Strings`_ is an _object_ that hold all your strings that must be a _`Local
 }
 ```
 
-Both classes are localted under **_<u>dev.agnaldo.kmpsample.providers</u>_** and as a commum resource are placed in `./shared/src/commonMain/kotlin/dev/agnaldo/kmpsample/providers/`
+Both classes are localted under **_<u>dev.agnaldo.kmpsample.shared.providers</u>_** and as a commum resource are placed in `./shared/src/commonMain/kotlin/dev/agnaldo/kmpsample/providers/`
 
 To use it the the composeApp you need just to call `Strings.stringName.localize()`. The _localize_ method also accpets arguments, so you can define _hello_ as shown before and call `Strings.hello.localize("Your Name")`.
 
@@ -144,7 +147,7 @@ abstract class AbsFlavorStrings {
 ````
  In this project you can see these files on:
 
- `./shared/src/commonFlavor1/kotlin/dev/agnaldo/kmpsample/providers/FlavorStrings.kt`
+ `./shared/src/commonFlavor1/kotlin/dev/agnaldo/kmpsample/shared/providers/FlavorStrings.kt`
  ```kotlin
  object FlavorStrings : AbsFlavorStrings() {
     override val click1 = LocalizedString(
@@ -153,7 +156,7 @@ abstract class AbsFlavorStrings {
     )
 }
  ```
- `./shared/src/commonFlavor2/kotlin/dev/agnaldo/kmpsample/providers/FlavorStrings.kt`
+ `./shared/src/commonFlavor2/kotlin/dev/agnaldo/kmpsample/shared/providers/FlavorStrings.kt`
  ```kotlin
  object FlavorStrings : AbsFlavorStrings() {
     override val click1 = LocalizedString(
@@ -174,7 +177,7 @@ abstract class AbsVariantStrings {
 ````
  In this project you can see these files on:
 
- `./shared/src/commonFlavor1Debug/kotlin/dev/agnaldo/kmpsample/providers/FlavorStrings.kt`
+ `./shared/src/commonFlavor1Debug/kotlin/dev/agnaldo/kmpsample/shared/providers/FlavorStrings.kt`
  ```kotlin
 object VariantStrings : AbsVariantStrings() {
     override val variantStr = LocalizedString(

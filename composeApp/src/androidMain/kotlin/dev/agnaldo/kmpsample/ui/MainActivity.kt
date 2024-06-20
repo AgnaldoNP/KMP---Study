@@ -7,16 +7,16 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import dev.agnaldo.kmpsample.ui.desktop.DesktopApp
-import dev.agnaldo.kmpsample.ui.mobile.MobileApp
+import dev.agnaldo.kmpsample.desktop.DesktopApp
+import dev.agnaldo.kmpsample.mobile.MobileApp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-//            MobileApp()
-            DesktopApp()
+            MobileApp()
+//            DesktopApp()
         }
     }
 }

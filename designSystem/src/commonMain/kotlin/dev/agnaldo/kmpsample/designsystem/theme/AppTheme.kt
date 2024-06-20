@@ -8,6 +8,8 @@ import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.SolidColor
+import dev.agnaldo.kmpsample.designsystem.borders.AppBorderStroke
 import dev.agnaldo.kmpsample.designsystem.colors.AppColors
 import dev.agnaldo.kmpsample.designsystem.colors.FlavorColors
 import dev.agnaldo.kmpsample.designsystem.shapes.AppShapes
@@ -24,6 +26,21 @@ fun ApplicationTheme(
     AppTheme.colors.updateColorsFrom(colors)
     AppTheme.typography.updateTypographyFrom(typography)
     AppTheme.shapes.updateShapesFrom(shapes)
+
+    // update border colors with theme
+    AppTheme.borderStoke.updateBordersFrom(
+        AppTheme.borderStoke.copy(
+            small = AppTheme.borderStoke.small.copy(
+                brush = SolidColor(AppTheme.colors.baseThin)
+            ),
+            medium = AppTheme.borderStoke.medium.copy(
+                brush = SolidColor(AppTheme.colors.baseThin)
+            ),
+            large = AppTheme.borderStoke.large.copy(
+                brush = SolidColor(AppTheme.colors.baseThin)
+            )
+        )
+    )
 
     MaterialTheme(
         colors = Colors(
@@ -71,6 +88,7 @@ object AppTheme {
     private val currentColors = staticCompositionLocalOf { FlavorColors.lightColors.copy() }
     private val currentTypography = staticCompositionLocalOf { AppTypography.default.copy() }
     private val currentShapes = staticCompositionLocalOf { AppShapes.default.copy() }
+    private val currentBorderStroke = staticCompositionLocalOf { AppBorderStroke.default.copy() }
 
     val colors: AppColors
         @Composable
@@ -86,4 +104,9 @@ object AppTheme {
         @Composable
         @ReadOnlyComposable
         get() = currentShapes.current
+
+    val borderStoke: AppBorderStroke
+        @Composable
+        @ReadOnlyComposable
+        get() = currentBorderStroke.current
 }

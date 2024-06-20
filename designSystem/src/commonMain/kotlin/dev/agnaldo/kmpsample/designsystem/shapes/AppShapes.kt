@@ -25,22 +25,23 @@ class AppShapes(
     medium: CornerBasedShape,
     large: CornerBasedShape,
 ) {
-    internal var small by mutableStateOf(small, structuralEqualityPolicy())
+    var small by mutableStateOf(small, structuralEqualityPolicy())
         internal set
 
-    internal var medium by mutableStateOf(medium, structuralEqualityPolicy())
+    var medium by mutableStateOf(medium, structuralEqualityPolicy())
         internal set
 
-    internal var large by mutableStateOf(large, structuralEqualityPolicy())
+    var large by mutableStateOf(large, structuralEqualityPolicy())
+        internal set
 
     internal fun copy(
         small: CornerBasedShape = this.small,
         medium: CornerBasedShape = this.medium,
         large: CornerBasedShape = this.large,
     ): AppShapes = AppShapes(
-        small = this.small,
-        medium = this.medium,
-        large = this.large
+        small = small,
+        medium = medium,
+        large = large
     )
 
     internal fun updateShapesFrom(other: AppShapes) {
@@ -52,8 +53,8 @@ class AppShapes(
     companion object {
         internal val default = AppShapes(
             small = RoundedCornerShape(4.dp),
-            medium = RoundedCornerShape(6.dp),
-            large = RoundedCornerShape(8.dp),
+            medium = RoundedCornerShape(8.dp),
+            large = RoundedCornerShape(16.dp),
         )
     }
 }

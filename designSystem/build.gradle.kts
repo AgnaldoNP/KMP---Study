@@ -1,4 +1,6 @@
 import org.gradle.configurationcache.extensions.capitalized
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
@@ -6,6 +8,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.compose.compiler)
 }
 
 kotlin {
@@ -24,10 +27,9 @@ kotlin {
     }
 
     androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "11"
-            }
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
         }
     }
 
@@ -79,13 +81,17 @@ kotlin {
 
 android {
     namespace = "dev.agnaldo.kmpsample.designsystem"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    compileSdk = libs.versions.android.compileSdk
+        .get()
+        .toInt()
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
     defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
+        minSdk = libs.versions.android.minSdk
+            .get()
+            .toInt()
     }
 
     buildTypes {
@@ -98,9 +104,15 @@ android {
     flavorDimensions += BuildSrcConfig.Dimension.CLIENT
     productFlavors {
         BuildSrcConfig.Flavor.values().forEach { flavor ->
-            create("andriod" + flavor.flavorName.capitalized()) {
+            val name = "android" + flavor.flavorName.capitalized()
+            (findByName(name) ?: create(name)).apply {
                 dimension = BuildSrcConfig.Dimension.CLIENT
             }
         }
     }
+}
+dependencies {
+    implementation(libs.androidx.ui.android)
+    implementation(libs.androidx.material3.android)
+    implementation(libs.androidx.foundation.android)
 }
