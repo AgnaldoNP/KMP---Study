@@ -12,7 +12,7 @@ import io.ktor.client.request.setBody
 class ApiClientImpl(
     private val httpClient: HttpClient
 ) : ApiClient {
-    private val baseUrl = "http://your.server.com"
+    private val baseUrl = "http://137.184.95.5/"
 
     override suspend fun login(user: String, pass: String): Result<LoginSuccessResponse, NetworkError> {
         return performHttpRequest<LoginSuccessResponse> {

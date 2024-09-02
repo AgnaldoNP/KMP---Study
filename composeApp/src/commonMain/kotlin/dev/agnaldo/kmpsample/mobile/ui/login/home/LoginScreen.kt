@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import dev.agnaldo.kmpsample.designsystem.theme.AppTheme
 import dev.agnaldo.kmpsample.designsystem.theme.ApplicationTheme
@@ -103,7 +104,7 @@ fun LoginScreen() {
 
 @Composable
 private fun handleRouting(viewModel: LoginScreenViewModel): Boolean {
-    val routing = viewModel.routing.collectAsState().value ?: return false
+    val routing = viewModel.routing.collectAsStateWithLifecycle(initialValue = null).value ?: return false
     val navController = remember { inject<NavHostController>() }
     when (routing) {
         is LoginScreenRouting.Home -> navController.navigate(Screen.Home.name)

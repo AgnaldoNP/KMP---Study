@@ -12,7 +12,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.sp
 import dev.agnaldo.kmpsample.designsystem.colors.FlavorColors
-import dev.agnaldo.kmpsample.designsystem.theme.AppTheme
 
 class AppTypography(
     fontFamily: FontFamily,

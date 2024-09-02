@@ -52,6 +52,7 @@ kotlin {
                 implementation(libs.koin.core)
                 implementation(libs.bundles.ktor.common)
                 implementation(libs.kotlin.serializarion)
+                implementation(libs.kotlinx.coroutines.core)
 
                 implementation(compose.runtime)
                 implementation(compose.foundation)
@@ -65,6 +66,7 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.koin.android)
             implementation(libs.ktor.client.okhttp)
+            implementation(libs.androidx.activity.compose)
         }
 
         wasmJsMain.apply {

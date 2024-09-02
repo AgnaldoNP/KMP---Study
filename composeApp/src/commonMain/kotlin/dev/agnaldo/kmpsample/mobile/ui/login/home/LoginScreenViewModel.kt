@@ -81,6 +81,6 @@ class LoginScreenViewModel(
     }
 
     fun resetRouting() {
-        _routing.update { null }
+        _routing.value = null
     }
 }

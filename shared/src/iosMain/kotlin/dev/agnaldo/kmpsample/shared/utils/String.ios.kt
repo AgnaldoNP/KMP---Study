@@ -36,6 +36,7 @@ actual fun String.parseHtml(): AnnotatedString {
         splitHtml(this@parseHtml).forEach {
             println("${it.text} ${it.modifiers}")
             if (it.modifiers.isNotEmpty()) {
+                print("Eu aqui")
                 when {
                     it.modifiers.contains("b") && it.modifiers.contains("i") -> withStyle(
                         style = SpanStyle(
@@ -53,9 +54,12 @@ actual fun String.parseHtml(): AnnotatedString {
                             fontStyle = FontStyle.Italic
                         )
                     ) { append(it.text) }
-                    it.modifiers.contains("a") -> {
-                        // TODO: get the url
-                        val url = ""
+                    it.modifiers.any { m -> m.contains("a ") } -> {
+                        val url = it.modifiers.first { m -> m.contains("a ") }
+                            .split(" ").firstOrNull { n ->
+                                n.contains("href", true)
+                            }?.split("=")?.get(1)
+                            ?.removeSurrounding("\"").orEmpty()
                         withAnnotation(UrlAnnotation(url)) {
                             append(it.text)
                         }

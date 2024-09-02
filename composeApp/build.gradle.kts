@@ -63,6 +63,7 @@ kotlin {
                 implementation(compose.ui)
                 implementation(compose.components.resources)
                 implementation(compose.components.uiToolingPreview)
+                implementation(libs.kotlinx.coroutines.core)
 
                 implementation(projects.designSystem)
                 implementation(projects.shared)
@@ -87,7 +88,7 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
-
+            implementation(libs.accompanist.permissions)
             implementation(libs.koin.android)
         }
 
@@ -96,6 +97,9 @@ kotlin {
                 implementation(compose.desktop.currentOs)
                 implementation(libs.kotlinx.coroutines.swing)
                 implementation(libs.koin.core)
+
+                implementation(libs.webcam.capture)
+                implementation(libs.webcam.capture.driver.native)
             }
 
             kotlin.srcDir("src/desktop${variant.flavor.flavorName.capitalized()}/kotlin")
@@ -507,4 +511,6 @@ tasks.named("generateComposeResClass") {
 dependencies {
     implementation(libs.volley)
     implementation(libs.material3.android)
+    implementation(libs.androidx.foundation.layout.android)
+    implementation(libs.ui.android)
 }

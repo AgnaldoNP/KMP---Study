@@ -5,4 +5,11 @@ import androidx.lifecycle.ViewModel
 class RegisterScreenViewModel : ViewModel() {
 
     fun init() { }
+    fun onStartPhotoTaking() {
+
+    }
+
+    fun onPickPhoto() {
+
+    }
 }
